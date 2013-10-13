@@ -1,0 +1,37 @@
+{
+  "name": "pxpay",
+  "version": "0.1.0",
+  "description": "pxpay\r =====",
+  "main": "index.js",
+  "scripts": {
+    "test": "tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Kevnz/pxpay.git"
+  },
+  "keywords": [
+    "dsp",
+    "ecommerce",
+    "payments",
+    "payment",
+    "gateway",
+    "paymentexpress",
+    "payment",
+    "express",
+    "transactions"
+  ],
+  "author": "Kevin Isom <kevin.isom@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kevnz/pxpay/issues"
+  },
+  "dependencies": {
+    "xml": "0.0.8",
+    "xml2js": "~0.2.8",
+    "request": "~2.27.0"
+  },
+  "devDependencies": {
+    "qconf": "~0.3.0"
+  }
+}
