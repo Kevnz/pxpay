@@ -16,9 +16,9 @@ module.exports = {
                 { AmountInput: details.amount },
                 { CurrencyInput: details.currency || 'NZD' },
                 { MerchentReference: details.reference },
-                { TxnData1: details.line1 },
-                { TxnData2: details.line2 },
-                { TxnData3: details.line3 },
+                { TxnData1: details.line1 || ''},
+                { TxnData2: details.line2 || ''},
+                { TxnData3: details.line3 || ''},
                 { EmailAddress: details.email },
                 { TxnId: details.transactionId || '' },
                 { BillingId: details.billingId },
@@ -27,22 +27,12 @@ module.exports = {
                 { UrlFail: details.failURL }
             ]
         };
-        if (details.billingId) {
-            dpsData.GenerateRequest.push({ BillingId: details.billingId });
-        }
-        if (details.addCard) {
-            dpsData.GenerateRequest.push({ EnableAddBillCard: details.addCard ? 1:0 });
-        }
-        if (details.billingId) {
-            dpsData.GenerateRequest.push({ BillingId: details.billingId });
-        }
-
         request({
             uri: url,
             method: 'POST',
             body: xml(dpsData)
         }, function requestCallback (err, res, body) {
-        	console.log(body);
+            console.log(body);
             process.nextTick(function requestHandler () {
                 if(err) {
                     process.nextTick(function(){
