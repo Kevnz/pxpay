@@ -1,7 +1,7 @@
 {
   "name": "pxpay",
-  "version": "0.1.0",
-  "description": "pxpay\r =====",
+  "version": "0.1.1",
+  "description": "A node module for using the Payment Express PXPay 2.0 service for payment processing",
   "main": "index.js",
   "scripts": {
     "test": "tests/index.js"
