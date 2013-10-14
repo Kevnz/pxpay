@@ -60,9 +60,7 @@ pxpay.request({
     billingId: 'billing-id-'+ Date.now(),
     addCard: 0,
     successURL: 'http://example.com/success',
-    failURL: 'http://example.com/fail' 
+    failURL: 'http://example.com/fail'
 }, function submitcallback (err, result) {
-    // body...
-    console.log(err);
-    console.log(result);
-})
+    assert.equal(result.$.valid, 1, "result should be valid");
+});

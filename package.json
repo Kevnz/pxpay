@@ -26,6 +26,7 @@
   "bugs": {
     "url": "https://github.com/Kevnz/pxpay/issues"
   },
+  "scripts" : { "test" : "node tests/index.js" },
   "dependencies": {
     "xml": "0.0.8",
     "xml2js": "~0.2.8",

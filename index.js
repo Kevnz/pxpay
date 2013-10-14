@@ -32,9 +32,9 @@ module.exports = {
             uri: url,
             method: 'POST',
             body: xml(dpsData)
-        }, function (err, res, body) {
+        }, function requestCallback (err, res, body) {
         	console.log(body);
-            process.nextTick(function () {
+            process.nextTick(function requestHandler () {
                 if(err) {
                     process.nextTick(function(){
                         callback(err);
@@ -42,10 +42,10 @@ module.exports = {
                 } else {
                     var parser = new require('xml2js').Parser({ explicitArray: false});
                     process.nextTick(function(){
-                        parser.parseString(body, function (error, result){
+                        parser.parseString(body, function parserHandler (error, result){
                             console.log(result);
-                            if(result.$.valid === 1){
-                                process.nextTick(function(){ callback(null, result); });
+                            if(result.Request.$.valid === '1'){
+                                process.nextTick(function(){ callback(null, result.Request); });
                             } else if (error) {
                                 process.nextTick(function(){ callback(error); });
                             } else {
