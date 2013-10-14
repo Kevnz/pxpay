@@ -27,6 +27,15 @@ module.exports = {
                 { UrlFail: details.failURL }
             ]
         };
+        if (details.billingId) {
+            dpsData.GenerateRequest.push({ BillingId: details.billingId });
+        }
+        if (details.addCard) {
+            dpsData.GenerateRequest.push({ EnableAddBillCard: details.addCard ? 1:0 });
+        }
+        if (details.billingId) {
+            dpsData.GenerateRequest.push({ BillingId: details.billingId });
+        }
 
         request({
             uri: url,
