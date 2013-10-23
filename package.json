@@ -4,7 +4,7 @@
   "description": "A node module for using the Payment Express PXPay 2.0 service for payment processing",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/request_generation_test.js"
+    "test": "node tests/index.js"
   },
   "repository": {
     "type": "git",
