@@ -7,9 +7,8 @@ var SUCCESS_STATUS = 1;
 var FAIL_STATUS = 0;
 
 module.exports = {
-    request: function (details, callback) {
-        var dpsData = {
-            GenerateRequest: [
+    generateRequest: function (details) {
+        var dataPayload = [
                 { PxPayUserId: details.user },
                 { PxPayKey: details.password },
                 { TxnType: details.transactionType || 'Purchase' },
@@ -21,18 +20,29 @@ module.exports = {
                 { TxnData3: details.line3 || ''},
                 { EmailAddress: details.email },
                 { TxnId: details.transactionId || '' },
-                { BillingId: details.billingId },
-                { EnableAddBillCard: details.addCard },
                 { UrlSuccess: details.successURL },
                 { UrlFail: details.failURL }
-            ]
+            ];
+        if (details.billingId) {
+            dataPayload.push({ BillingId: details.billingId });
+        }
+        if (details.addCard) {
+            dataPayload.push({ EnableAddBillCard: details.addCard });
+        }
+        var dpsData = {
+            GenerateRequest: dataPayload
         };
+        return xml(dpsData);
+    },
+    request: function (details, callback) {
+        var dpsData = this.generateRequest(details);
+
+
         request({
             uri: url,
             method: 'POST',
-            body: xml(dpsData)
+            body: dpsData
         }, function requestCallback (err, res, body) {
-            console.log(body);
             process.nextTick(function requestHandler () {
                 if(err) {
                     process.nextTick(function(){
@@ -42,7 +52,6 @@ module.exports = {
                     var parser = new require('xml2js').Parser({ explicitArray: false});
                     process.nextTick(function(){
                         parser.parseString(body, function parserHandler (error, result){
-                            console.log(result);
                             if(result.Request.$.valid === '1'){
                                 process.nextTick(function(){ callback(null, result.Request); });
                             } else if (error) {
