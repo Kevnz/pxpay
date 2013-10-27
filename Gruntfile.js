@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     mochacli: {
           options: {
-              reporter: 'progress',
+              reporter: 'spec',
               bail: true
           },
           all: ['tests/*.js']

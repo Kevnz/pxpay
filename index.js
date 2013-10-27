@@ -14,15 +14,27 @@ module.exports = {
                 { TxnType: details.transactionType || 'Purchase' },
                 { AmountInput: details.amount },
                 { CurrencyInput: details.currency || 'NZD' },
-                { MerchentReference: details.reference },
-                { TxnData1: details.line1 || ''},
-                { TxnData2: details.line2 || ''},
-                { TxnData3: details.line3 || ''},
-                { EmailAddress: details.email },
-                { TxnId: details.transactionId || '' },
                 { UrlSuccess: details.successURL },
                 { UrlFail: details.failURL }
             ];
+        if (details.transactionId) {
+            dataPayload.push({ TxnId: details.transactionId });
+        }
+        if (details.reference) {
+            dataPayload.push({ MerchentReference: details.reference });
+        }
+        if (details.email) {
+            dataPayload.push({ EmailAddress: details.email });
+        }
+        if (details.line1) {
+            dataPayload.push({ TxnData1: details.line1 });
+        }
+        if (details.line2) {
+            dataPayload.push({ TxnData2: details.line2 });
+        }
+        if (details.line3) {
+            dataPayload.push({ TxnData3: details.line3 });
+        }
         if (details.billingId) {
             dataPayload.push({ BillingId: details.billingId });
         }
@@ -32,6 +44,7 @@ module.exports = {
         var dpsData = {
             GenerateRequest: dataPayload
         };
+        console.log(dpsData);
         return xml(dpsData);
     },
     request: function (details, callback) {

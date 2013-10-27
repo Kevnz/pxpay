@@ -1,15 +1,11 @@
 var assert = require('assert');
-var pxpay = require('../index.js');
+var pxpay = require('./index.js');
 var qconf = require('qconf'),
     config = qconf(),
     xpath = require('xpath'),
     dom = require('xmldom').DOMParser;
-
-describe('requestGeneration', function() {
-
-    it('request object to send should be properly formatted', function(done) {
-        console.log('test');
-        var options ={
+    
+var options ={
             user: config.get('user'),
             password: config.get('password'),
             amount: '1.00',
@@ -28,10 +24,3 @@ describe('requestGeneration', function() {
         var doc = new dom().parseFromString(rq);
         var addBill = xpath.select("/GenerateRequest/EnableAddBillCard/text()", doc).toString();
         assert.equal(addBill, 1, "The Node value should be 1");
-        done();
-    });
-
-
-
-});
- 

@@ -46,23 +46,21 @@ var qconf = require('qconf'),
     config = qconf();
 describe('requestGeneration', function() {
 
-  it('request object should be properly formatted', function(done) {
- var pxpay = require('../index.js');
-
+  it('request object should return result', function(done) {
+    var pxpay = require('../index.js');
+    console.log('rq');
     pxpay.request({
         user: config.get('user'),
         password: config.get('password'),
         amount: '1.00',
         reference: 'Test',
-        line1: '1 Street Rd',
-        line2: 'Some Suburb',
-        line3: 'Testville',
-        email: 'test@example.com',
-        TxnId: 'test-'+Date.now(),
+        TxnId: 'test-' + Date.now(),
         addCard: 1,
         successURL: 'http://example.com/success',
         failURL: 'http://example.com/fail'
     }, function submitcallback (err, result) {
+        console.log(result);
+        console.log('that was the result from px');
         assert.equal(result.$.valid, 1, "result should be valid");
         done();
     });
