@@ -41,10 +41,13 @@ module.exports = {
         if (details.addCard) {
             dataPayload.push({ EnableAddBillCard: details.addCard });
         }
+        if (details.dpsBillingId) {
+           dataPayload.push({ DpsBillingId: details.dpsBillingId });
+        }
         var dpsData = {
             GenerateRequest: dataPayload
         };
-        console.log(dpsData);
+        //console.log(dpsData);
         return xml(dpsData);
     },
     request: function (details, callback) {

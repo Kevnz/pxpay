@@ -48,7 +48,7 @@ describe('requestGeneration', function() {
 
   it('request object should return result', function(done) {
     var pxpay = require('../index.js');
-    console.log('rq');
+    //console.log('rq');
     pxpay.request({
         user: config.get('user'),
         password: config.get('password'),
