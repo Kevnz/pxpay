@@ -16,14 +16,9 @@ describe('Request Generation and Rebilling', function() {
             password: config.get('password'),
             amount: '1.00',
             reference: 'Test',
-            line1: '1 Street Rd',
-            line2: 'Some Suburb',
-            line3: 'Testville',
-            email: 'test@example.com',
             TxnId: 'test-'+Date.now(),
             dpsBillingId: DPS_BILLING_ID,
-            successURL: 'http://example.com/success',
-            failURL: 'http://example.com/fail'
+ 
 
         };
         var rq = pxpay.generateRequest(options);

@@ -13,10 +13,14 @@ module.exports = {
                 { PxPayKey: details.password },
                 { TxnType: details.transactionType || 'Purchase' },
                 { AmountInput: details.amount },
-                { CurrencyInput: details.currency || 'NZD' },
-                { UrlSuccess: details.successURL },
-                { UrlFail: details.failURL }
+                { CurrencyInput: details.currency || 'NZD' }
             ];
+        if (details.successURL ) {
+            dataPayload.push( { UrlSuccess: details.successURL });
+        }
+        if (details.failURL ) {
+            dataPayload.push( {  UrlFail: details.failURL });
+        }
         if (details.transactionId) {
             dataPayload.push({ TxnId: details.transactionId });
         }
