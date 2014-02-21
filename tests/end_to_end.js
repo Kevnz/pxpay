@@ -40,7 +40,7 @@ Request XML
             ]
         };
 */
-var assert = require('assert');
+var expect = require('chai').expect
 
 var qconf = require('qconf'),
     config = qconf();
@@ -61,7 +61,8 @@ describe('requestGeneration', function() {
     }, function submitcallback (err, result) {
         console.log(result);
         console.log('that was the result from px');
-        assert.equal(result.$.valid, 1, "result should be valid");
+        expect(err).to.be.null;
+        expect(result.$.valid).to.equal('1');
         done();
     });
         

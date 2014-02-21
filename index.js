@@ -51,7 +51,7 @@ module.exports = {
         var dpsData = {
             GenerateRequest: dataPayload
         };
-        //console.log(dpsData);
+        console.log(dpsData);
         return xml(dpsData);
     },
     request: function (details, callback) {
@@ -69,9 +69,11 @@ module.exports = {
                         callback(err);
                     });
                 } else {
+                    console.log(body);
                     var parser = new require('xml2js').Parser({ explicitArray: false});
                     process.nextTick(function(){
                         parser.parseString(body, function parserHandler (error, result){
+                            console.log(error);
                             if(result.Request.$.valid === '1'){
                                 process.nextTick(function(){ callback(null, result.Request); });
                             } else if (error) {
