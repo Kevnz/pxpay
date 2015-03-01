@@ -69,7 +69,6 @@ module.exports = {
                         callback(err);
                     });
                 } else {
-                    console.log(body);
                     var parser = new require('xml2js').Parser({ explicitArray: false});
                     process.nextTick(function(){
                         parser.parseString(body, function parserHandler (error, result){
