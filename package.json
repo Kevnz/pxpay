@@ -1,6 +1,6 @@
 {
   "name": "pxpay",
-  "version": "0.4.1",
+  "version": "1.0.0",
   "description": "A node module for using the Payment Express PXPay 2.0 service for payment processing",
   "main": "index.js",
   "scripts": {
@@ -32,13 +32,14 @@
     "request": "~2.27.0"
   },
   "devDependencies": {
-    "qconf": "~0.3.0",
-    "mocha": "~1.13.0",
-    "xpath": "0.0.5",
+    "chai": "~1.9.0",
     "grunt": "~0.4.1",
-    "grunt-mocha-cli": "~1.3.0",
-    "xmldom": "~0.1.16",
     "grunt-contrib-watch": "~0.5.3",
-    "chai": "~1.9.0"
+    "grunt-mocha-cli": "~1.3.0",
+    "mocha": "~1.13.0",
+    "proxyquire": "^1.3.1",
+    "qconf": "~0.3.0",
+    "xmldom": "~0.1.16",
+    "xpath": "0.0.5"
   }
 }
