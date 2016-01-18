@@ -6,8 +6,15 @@ var txtTypes = ['Purchase', 'Auth', 'Complete', 'Refund', 'Validate'];
 var SUCCESS_STATUS = 1;
 var FAIL_STATUS = 0;
 
+var logOutput = false;
+
 module.exports = {
     generateRequest: function (details) {
+        
+        if (details.logOutput) {
+            logOutput = details.logOutput;
+        }
+        
         var dataPayload = [
                 { PxPayUserId: details.user },
                 { PxPayKey: details.password },
@@ -51,12 +58,14 @@ module.exports = {
         var dpsData = {
             GenerateRequest: dataPayload
         };
-        console.log(dpsData);
+        if (logOutput) {
+            console.log(dpsData);
+        }
+        
         return xml(dpsData);
     },
     request: function (details, callback) {
         var dpsData = this.generateRequest(details);
-
 
         request({
             uri: url,
@@ -72,7 +81,9 @@ module.exports = {
                     var parser = new require('xml2js').Parser({ explicitArray: false});
                     process.nextTick(function(){
                         parser.parseString(body, function parserHandler (error, result){
-                            console.log(error);
+                            if (logOutput) {
+                                console.log(error);
+                            }
                             if(result.Request.$.valid === '1'){
                                 process.nextTick(function(){ callback(null, result.Request); });
                             } else if (error) {
