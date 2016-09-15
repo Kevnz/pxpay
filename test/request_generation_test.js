@@ -19,7 +19,7 @@ describe('Request Generation', function() {
             line2: 'Some Suburb',
             line3: 'Testville',
             email: 'test@example.com',
-            TxnId: 'test-'+Date.now(),
+            transactionId: 'test-'+Date.now(),
             addCard: 1,
             successURL: 'http://example.com/success',
             failURL: 'http://example.com/fail'
@@ -40,7 +40,7 @@ describe('Request Generation', function() {
             line2: 'Some Suburb',
             line3: 'Testville',
             email: 'test@example.com',
-            TxnId: 'test-'+Date.now(),
+            transactionId: 'test-'+Date.now(),
             addCard: 1,
             successURL: 'http://example.com/success',
             failURL: 'http://example.com/fail'
@@ -51,5 +51,50 @@ describe('Request Generation', function() {
         assert.equal(addref, 'Test', "The Node value should be Test");
         done();
     });
+    it('request should set the TxnId when transactionId is set', function (done) {
+        var txId = 'test-' + Date.now();
+        var options ={
+            user: 'TestAccount',
+            password: 'password',
+            amount: '1.00',
+            reference: 'Test',
+            line1: '1 Street Rd',
+            line2: 'Some Suburb',
+            line3: 'Testville',
+            email: 'test@example.com',
+            transactionId: txId,
+            addCard: 1,
+            successURL: 'http://example.com/success',
+            failURL: 'http://example.com/fail'
+        };
+        var rq = pxpay.generateRequest(options);
+        var doc = new dom().parseFromString(rq);
+        var addref = xpath.select("/GenerateRequest/TxnId/text()", doc).toString();
+        assert.equal(addref, txId, "The Node value should be Test");
+        done();
+    });
+    it('request should set the TxnId when TxnId is set', function (done) {
+        var txId = 'test-' + Date.now();
+        var options ={
+            user: 'TestAccount',
+            password: 'password',
+            amount: '1.00',
+            reference: 'Test',
+            line1: '1 Street Rd',
+            line2: 'Some Suburb',
+            line3: 'Testville',
+            email: 'test@example.com',
+            TxnId: txId,
+            addCard: 1,
+            successURL: 'http://example.com/success',
+            failURL: 'http://example.com/fail'
+        };
+        var rq = pxpay.generateRequest(options);
+        var doc = new dom().parseFromString(rq);
+        var addref = xpath.select("/GenerateRequest/TxnId/text()", doc).toString();
+        assert.equal(addref, txId, "The Node value should be Test");
+        done();
+    });
+
 });
 
