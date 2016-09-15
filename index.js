@@ -21,6 +21,9 @@ module.exports = {
         if (details.failURL ) {
             dataPayload.push( {  UrlFail: details.failURL });
         }
+        if (details.TxnId) {
+            dataPayload.push({ TxnId: details.TxnId });
+        }
         if (details.transactionId) {
             dataPayload.push({ TxnId: details.transactionId });
         }
