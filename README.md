@@ -12,7 +12,7 @@ pxpay.request({
     password: 'password',
     amount: '1.00',
     reference: 'Test',
-    TxnId: 'test-' + Date.now(),
+    transactionId: 'test-' + Date.now(),
     addCard: 1,
     successURL: 'http://example.com/success',
     failURL: 'http://example.com/fail'
