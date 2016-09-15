@@ -1,7 +1,5 @@
 var assert = require('assert');
-var qconf = require('qconf'),
-    config = qconf(),
-    xpath = require('xpath'),
+var xpath = require('xpath'),
     dom = require('xmldom').DOMParser;
 var proxyquire = require('proxyquire').noPreserveCache();
 

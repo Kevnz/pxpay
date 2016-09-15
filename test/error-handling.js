@@ -1,9 +1,5 @@
 var proxyquire = require('proxyquire').noPreserveCache();
 var assert = require('assert');
-var qconf = require('qconf'),
-    config = qconf(),
-    xpath = require('xpath'),
-    dom = require('xmldom').DOMParser;
 var expect = require('chai').expect;
 
 describe('Error Handling', function() {
