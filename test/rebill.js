@@ -1,5 +1,7 @@
 var proxyquire = require('proxyquire').noPreserveCache();
 var assert = require('assert');
+var xpath = require('xpath');
+var dom = require('xmldom').DOMParser;
 var DPS_BILLING_ID = '0000000000010';
 
 
