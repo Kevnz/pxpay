@@ -1,4 +1,4 @@
-var request = require('request');
+
 var xml = require('xml');
 var url = 'https://sec.paymentexpress.com/pxaccess/pxpay.aspx';
 
@@ -9,12 +9,12 @@ var FAIL_STATUS = 0;
 module.exports = {
     generateRequest: function (details) {
         var dataPayload = [
-                { PxPayUserId: details.user },
-                { PxPayKey: details.password },
-                { TxnType: details.transactionType || 'Purchase' },
-                { AmountInput: details.amount },
-                { CurrencyInput: details.currency || 'NZD' }
-            ];
+            { PxPayUserId: details.user },
+            { PxPayKey: details.password },
+            { TxnType: details.transactionType || 'Purchase' },
+            { AmountInput: details.amount },
+            { CurrencyInput: details.currency || 'NZD' }
+        ];
         if (details.successURL ) {
             dataPayload.push( { UrlSuccess: details.successURL });
         }
@@ -51,43 +51,45 @@ module.exports = {
         var dpsData = {
             GenerateRequest: dataPayload
         };
-        console.log(dpsData);
         return xml(dpsData);
     },
     request: function (details, callback) {
+        var rquest = require('request');
         var dpsData = this.generateRequest(details);
-
-
-        request({
+        var self = this;
+        rquest({
             uri: url,
             method: 'POST',
             body: dpsData
         }, function requestCallback (err, res, body) {
-            process.nextTick(function requestHandler () {
-                if(err) {
-                    process.nextTick(function(){
-                        callback(err);
-                    });
-                } else {
-                    var parser = new require('xml2js').Parser({ explicitArray: false});
-                    process.nextTick(function(){
-                        parser.parseString(body, function parserHandler (error, result){
-                            console.log(error);
-                            if(result.Request.$.valid === '1'){
-                                process.nextTick(function(){ callback(null, result.Request); });
-                            } else if (error) {
-                                process.nextTick(function(){ callback(error); });
-                            } else {
-                                process.nextTick(function(){ callback({message: "result did not return correct code", result: result });});
-                            }
-                        });
-                    });
-                }
-
+            process.nextTick(function() {
+                self.process(err, res, body, callback);
             });
         });
     },
-    process: function () {
-        
+    process: function (err, res, body, callback) {
+        if (err) {
+            process.nextTick(function(){
+                callback(err);
+            });
+        } else {
+            var parser = new require('xml2js').Parser({ explicitArray: false});
+
+            process.nextTick(function(){
+                parser.parseString(body, function parserHandler (error, result){
+                    if (error) {
+                        process.nextTick(function(){ callback(error); });
+                    } else if (!result || !result.Request || !result.Request.$ || !result.Request.$.valid) {
+                        process.nextTick(function() {
+                            callback({message: "result did not return correct code", result: result });
+                        });
+                    } else if(result.Request.$.valid === '1') {
+                        process.nextTick(function(){ callback(null, result.Request); });
+                    } else {
+                        process.nextTick(function(){ callback({message: "result did not return correct code", result: result });});
+                    }
+                });
+            });
+        }
     }
 };
