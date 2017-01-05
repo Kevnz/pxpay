@@ -43,7 +43,7 @@ describe('Request Generation and Rebilling', function() {
         };
         var rq = pxpay.generateRequest(options);
         var doc = new dom().parseFromString(rq);
-        var addref = xpath.select("/GenerateRequest/MerchentReference/text()", doc).toString();
+        var addref = xpath.select("/GenerateRequest/MerchantReference/text()", doc).toString();
         assert.equal(addref, 'Test', "The Node value should be Test");
         done();
     });

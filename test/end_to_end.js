@@ -27,7 +27,7 @@ var dpsData = {
         { TxnType: details.transactionType || 'Purchase' },
         { AmountInput: details.amount },
         { CurrencyInput: details.currency || 'NZD' },
-        { MerchentReference: details.reference },
+        { MerchantReference: details.reference },
         { TxnData1: details.line1 },
         { TxnData2: details.line2 },
         { TxnData3: details.line3 },
