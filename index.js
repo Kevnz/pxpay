@@ -28,7 +28,7 @@ module.exports = {
             dataPayload.push({ TxnId: details.transactionId });
         }
         if (details.reference) {
-            dataPayload.push({ MerchentReference: details.reference });
+            dataPayload.push({ MerchantReference: details.reference });
         }
         if (details.email) {
             dataPayload.push({ EmailAddress: details.email });
