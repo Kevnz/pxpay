@@ -1,6 +1,6 @@
 {
   "name": "pxpay",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A node module for using the Payment Express PXPay 2.0 service for payment processing",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git://github.com/Kevnz/pxpay.git"
   },
+  "homepage": "http://kevinisom.info/pxpay",
   "keywords": [
     "dsp",
     "ecommerce",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@kev_nz/eslint-config": "^3.1.0",
+    "@kev_nz/publisher": "^1.0.1",
     "chai": "~4.2.0",
     "eslint": "^5.14.1",
     "mocha": "^5.2.0",
