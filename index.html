@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>pxpay</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <meta name="description" content="A node module for using the Payment Express PXPay 2.0 service for payment processing" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+  <div class="container">
+  <p><a href="https://travis-ci.org/Kevnz/pxpay"><img src="https://travis-ci.org/Kevnz/pxpay.png?branch=master" alt="Build Status" /></a></p>
+<h1 id="pxpay">PxPay</h1>
+<p>PxPay implementation for node.js</p>
+<p>Node module to use the <a href="http://paymentexpress.co.nz/developer-e-commerce-paymentexpress-hosted-pxpay">PxPay</a> service from <a href="http://paymentexpress.co.nz/">Payment Express</a>.</p>
+<h4 id="install">Install</h4>
+<pre><code class="bash language-bash">$ npm install pxpay</code></pre>
+<h4 id="usage">Usage</h4>
+<pre><code class="javascript language-javascript">const pxpay = require('pxpay')
+  pxpay.request({
+  user: 'TestAccount',
+  password: 'password',
+  amount: '1.00',
+  reference: 'Test',
+  transactionId: 'test-' + Date.now(),
+  addCard: 1,
+  successURL: 'http://example.com/success',
+  failURL: 'http://example.com/fail'
+}, function submitcallback (err, result) {
+  result.$.valid; //=== 1
+})</code></pre>
+<h2 id="notes">Notes</h2>
+<p>If you are running in production it uses the Payment Express production URL, otherwise it uses the UAT url.</p>
+  </div>
+</body>
