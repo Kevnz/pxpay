@@ -7,6 +7,9 @@
     "test": "mocha --reporter spec",
     "cov": "nyc npm test"
   },
+  "engines": {
+    "node": ">= 6"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/Kevnz/pxpay.git"
