@@ -1,5 +1,4 @@
 version: 2
-
 jobs:
   build:
     docker:
@@ -12,47 +11,4 @@ jobs:
       - run: npm run lint
       # run tests!
       - run: npm test
-      - run: npm run coverage
-  "node-v10":
-    docker:
-      - image: circleci/node:10
-    working_directory: ~/creature-features
-    steps:
-      - checkout
 
-      - run: npm install
-      - run: npm run lint
-      # run tests!
-      - run: npm test
-      - run: npm run coverage
-      - run:
-          name: Setup Github
-          command: |
-            git config --global user.email "Kevnz@users.noreply.github.com"
-            git config --global user.name "Kevin Isom"
-            echo "machine github.com login Kevnz password $GITHUB_TOKEN" > ~/.netrc
-      - run: npm run docs
-  "node-v8":
-    docker:
-      - image: circleci/node:8
-    working_directory: ~/creature-features
-    steps:
-      - checkout
-
-      - run: npm install
-      - run: npm run lint
-      # run tests!
-      - run: npm test
-      - run: npm run coverage
-  "node-v6":
-    docker:
-      - image: circleci/node:6
-    working_directory: ~/creature-features
-    steps:
-      - checkout
-
-      - run: npm install
-      - run: npm run lint
-      # run tests!
-      - run: npm test
-      - run: npm run coverage
