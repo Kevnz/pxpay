@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/Kevnz/pxpay.png?branch=master)](https://travis-ci.org/Kevnz/pxpay)
-
 # PxPay
+
+[![Build Status](https://travis-ci.org/Kevnz/pxpay.png?branch=master)](https://travis-ci.org/Kevnz/pxpay)
 
 PxPay implementation for node.js
 
