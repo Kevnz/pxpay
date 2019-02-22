@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:11.9
+    working_directory: ~/pxpay
+    steps:
+      - checkout
+
+      - run: npm install
+      # run tests!
+      - run: npm test
