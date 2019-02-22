@@ -10,7 +10,8 @@ jobs:
       - run: npm install
       # run tests!
       - run: npm test
-  "node-v10":
+
+  versionTen:
     docker:
       - image: circleci/node:10
     working_directory: ~/pxpay
