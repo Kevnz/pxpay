@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  "node-v11":
+  build:
     docker:
       - image: circleci/node:11.9
     working_directory: ~/creature-features
