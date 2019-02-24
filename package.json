@@ -1,11 +1,12 @@
 {
   "name": "pxpay",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A node module for using the Payment Express PXPay 2.0 service for payment processing",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec",
-    "cov": "nyc npm test"
+    "cov": "nyc npm test",
+    "lint": "eslint ./index.js ./test/*.js"
   },
   "engines": {
     "node": ">= 6"
@@ -37,11 +38,11 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "@kev_nz/eslint-config": "^3.1.0",
-    "@kev_nz/publisher": "^1.0.1",
+    "@kev_nz/eslint-config": "^3.2.0",
+    "@kev_nz/publisher": "^2.1.0",
     "chai": "~4.2.0",
     "eslint": "^5.14.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.1",
     "nyc": "^13.3.0",
     "proxyquire": "^2.1.0",
     "xmldom": "~0.1.27",

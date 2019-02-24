@@ -1,19 +1,21 @@
-var proxyquire = require('proxyquire').noPreserveCache();
-var assert = require('assert');
-var expect = require('chai').expect;
+/* eslint-disable sonarjs/no-duplicate-string */
+/* eslint-disable no-unused-expressions */
+var proxyquire = require('proxyquire').noPreserveCache()
+var expect = require('chai').expect
 
 describe('Error Handling', function() {
-
-
-    var returnedRequest = '<Request valid="0" />';
-    var testError = new Error('Test');
+  var returnedRequest = '<Request valid="0" />'
+  var testError = new Error('Test')
 
   it('request object should return error gracefully', function(done) {
-    var pxpay = proxyquire('../index.js', { 'request' : function (opts, callback) {
-      callback(testError, null, returnedRequest);
-    }});
+    var pxpay = proxyquire('../index.js', {
+      request: function(opts, callback) {
+        callback(testError, null, returnedRequest)
+      },
+    })
 
-    pxpay.request({
+    pxpay.request(
+      {
         user: 'TestAccount',
         password: 'password',
         amount: '1.00',
@@ -21,71 +23,69 @@ describe('Error Handling', function() {
         TxnId: 'test-' + Date.now(),
         addCard: 1,
         successURL: 'http://example.com/success',
-        failURL: 'http://example.com/fail'
-    }, function submitcallback (err, result) {
-        expect(err).to.not.be.null;
-        done();
-    });
-
-  });
+        failURL: 'http://example.com/fail',
+      },
+      function submitcallback(err, result) {
+        expect(err).to.not.be.null
+        done()
+      }
+    )
+  })
   it('should handle XML Parsing failure', function(done) {
     var pxpay = proxyquire('../index.js', {
-        'xml2js': {
-            Parser: function() {
-                return {
-                    parseString: function(obj, callback) {
-                        callback(new Error('Failed Parsing'));
-                    }
-                }
-            }
-        }
-    });
-    pxpay.process(null, {}, '', function submitcallback (err, result) {
-        expect(err).to.not.be.null;
-        done();
-    });
-
-  });
+      xml2js: {
+        Parser: function() {
+          return {
+            parseString: function(obj, callback) {
+              callback(new Error('Failed Parsing'))
+            },
+          }
+        },
+      },
+    })
+    pxpay.process(null, {}, '', function submitcallback(err, result) {
+      expect(err).to.not.be.null
+      done()
+    })
+  })
   it('should handle XML Parsing returning no object', function(done) {
     var pxpay = proxyquire('../index.js', {
-        'xml2js': {
-            Parser: function() {
-                return {
-                    parseString: function(obj, callback) {
-                        callback(null, {});
-                    }
-                }
-            }
-        }
-    });
-    pxpay.process(null, {}, '', function submitcallback (err, result) {
-        expect(err).to.not.be.null;
-        done();
-    });
-
-  });
+      xml2js: {
+        Parser: function() {
+          return {
+            parseString: function(obj, callback) {
+              callback(null, {})
+            },
+          }
+        },
+      },
+    })
+    pxpay.process(null, {}, '', function submitcallback(err, result) {
+      expect(err).to.not.be.null
+      done()
+    })
+  })
   it('should handle XML Parsing returning invalid code', function(done) {
     var pxpay = proxyquire('../index.js', {
-        'xml2js': {
-            Parser: function() {
-                return {
-                    parseString: function(obj, callback) {
-                        callback(null, {
-                            Request: {
-                                $: {
-                                    valid: '0'
-                                }
-                            }
-                        });
-                    }
-                }
-            }
-        }
-    });
-    pxpay.process(null, {}, '', function submitcallback (err, result) {
-        expect(err).to.not.be.null;
-        done();
-    });
-  });
-});
-
+      xml2js: {
+        Parser: function() {
+          return {
+            parseString: function(obj, callback) {
+              callback(null, {
+                Request: {
+                  $: {
+                    valid: '0',
+                  },
+                },
+              })
+            },
+          }
+        },
+      },
+    })
+    pxpay.process(null, {}, '', function submitcallback(err, result) {
+      expect(err).to.not.be.null
+      done()
+    })
+  })
+})
