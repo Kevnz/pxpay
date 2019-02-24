@@ -6,40 +6,33 @@
   <link rel="stylesheet" type="text/css" href="styles.css" />
   <meta name="description" content="A node module for using the Payment Express PXPay 2.0 service for payment processing" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css" />
+
 </head>
 
 <body>
   <div class="container">
-  <p><a href="https://travis-ci.org/Kevnz/pxpay"><img src="https://travis-ci.org/Kevnz/pxpay.png?branch=master" alt="Build Status" /></a></p>
-<h1 id="pxpay">PxPay</h1>
+  <h1 id="pxpay">PxPay</h1>
+<p><a href="https://travis-ci.org/Kevnz/pxpay"><img src="https://travis-ci.org/Kevnz/pxpay.png?branch=master" alt="Build Status" /></a></p>
 <p>PxPay implementation for node.js</p>
 <p>Node module to use the <a href="http://paymentexpress.co.nz/developer-e-commerce-paymentexpress-hosted-pxpay">PxPay</a> service from <a href="http://paymentexpress.co.nz/">Payment Express</a>.</p>
 <h4 id="install">Install</h4>
-<pre><code class="bash language-bash">$ npm install pxpay</code></pre>
+<pre><code class="hljs bash language-bash">$ npm install pxpay</code></pre>
 <h4 id="usage">Usage</h4>
-<pre><code class="javascript language-javascript">const pxpay = require('pxpay')
+<pre><code class="hljs javascript language-javascript"><span class="hljs-keyword">const</span> pxpay = <span class="hljs-built_in">require</span>(<span class="hljs-string">'pxpay'</span>)
   pxpay.request({
-  user: 'TestAccount',
-  password: 'password',
-  amount: '1.00',
-  reference: 'Test',
-  transactionId: 'test-' + Date.now(),
-  addCard: 1,
-  successURL: 'http://example.com/success',
-  failURL: 'http://example.com/fail'
-}, function submitcallback (err, result) {
-  result.$.valid; //=== 1
+  <span class="hljs-attr">user</span>: <span class="hljs-string">'TestAccount'</span>,
+  <span class="hljs-attr">password</span>: <span class="hljs-string">'password'</span>,
+  <span class="hljs-attr">amount</span>: <span class="hljs-string">'1.00'</span>,
+  <span class="hljs-attr">reference</span>: <span class="hljs-string">'Test'</span>,
+  <span class="hljs-attr">transactionId</span>: <span class="hljs-string">'test-'</span> + <span class="hljs-built_in">Date</span>.now(),
+  <span class="hljs-attr">addCard</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">successURL</span>: <span class="hljs-string">'http://example.com/success'</span>,
+  <span class="hljs-attr">failURL</span>: <span class="hljs-string">'http://example.com/fail'</span>
+}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">submitcallback</span> (<span class="hljs-params">err, result</span>) </span>{
+  result.$.valid; <span class="hljs-comment">//=== 1</span>
 })</code></pre>
 <h2 id="notes">Notes</h2>
 <p>If you are running in production it uses the Payment Express production URL, otherwise it uses the UAT url.</p>
   </div>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-64038939-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  gtag('config', 'UA-64038939-2');
-</script>
-
 </body>
