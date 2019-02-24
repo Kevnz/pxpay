@@ -1,12 +1,13 @@
 # PxPay
-
-[![Build Status](https://travis-ci.org/Kevnz/pxpay.png?branch=master)](https://travis-ci.org/Kevnz/pxpay)
+[![npm version](https://badge.fury.io/js/pxpay.svg)](https://badge.fury.io/js/pxpay)
+![Build Status](https://img.shields.io/circleci/project/github/Kevnz/pxpay/master.svg)
 
 PxPay implementation for node.js
 
 Node module to use the [PxPay](http://paymentexpress.co.nz/developer-e-commerce-paymentexpress-hosted-pxpay) service from [Payment Express](http://paymentexpress.co.nz/).
 
 #### Install
+
 ```bash
 $ npm install pxpay
 ```

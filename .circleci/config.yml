@@ -10,6 +10,7 @@ jobs:
       - run: npm install
       # run tests!
       - run: npm test
+      - run: npm run coverage
 
   "node-10":
     docker:

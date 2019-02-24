@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --reporter spec",
     "cov": "nyc npm test",
-    "lint": "eslint ./index.js ./test/*.js"
+    "lint": "eslint ./index.js ./test/*.js",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
     "node": ">= 6"
@@ -41,6 +42,7 @@
     "@kev_nz/eslint-config": "^3.2.0",
     "@kev_nz/publisher": "^2.1.0",
     "chai": "~4.2.0",
+    "coveralls": "^3.0.3",
     "eslint": "^5.14.1",
     "mocha": "^6.0.1",
     "nyc": "^13.3.0",
