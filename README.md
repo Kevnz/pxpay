@@ -1,6 +1,7 @@
 # PxPay
 [![npm version](https://badge.fury.io/js/pxpay.svg)](https://badge.fury.io/js/pxpay)
 ![Build Status](https://img.shields.io/circleci/project/github/Kevnz/pxpay/master.svg)
+[![Coverage Status](https://coveralls.io/repos/github/Kevnz/pxpay/badge.svg?branch=master)](https://coveralls.io/github/Kevnz/pxpay?branch=master)
 
 PxPay implementation for node.js
 
