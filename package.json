@@ -10,7 +10,7 @@
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "preversion": "npm test",
     "postversion": "npm publish --access=public",
-    "postpublish": "git push origin --all --follow-tags && npx isom build:examples && node ./scripts/publish.js"
+    "postpublish": "git push origin --all --follow-tags && npx publisher"
   },
   "engines": {
     "node": ">= 6"
