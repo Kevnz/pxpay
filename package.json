@@ -6,8 +6,11 @@
   "scripts": {
     "test": "mocha --reporter spec",
     "cov": "nyc npm test",
-    "lint": "eslint ./index.js ./test/*.js",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "lint": "eslint ./index.js",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "preversion": "npm test",
+    "postversion": "npm publish --access=public",
+    "postpublish": "git push origin --all --follow-tags && npx isom build:examples && node ./scripts/publish.js"
   },
   "engines": {
     "node": ">= 6"
